@@ -7,3 +7,7 @@ This is a simple implementation of the classic Flappy Bird game in Java using th
 - Flappy Bird game with basic graphics.
 - Simple game mechanics - jump to avoid pipes.
 - Score tracking system.
+
+## Requirements
+
+- Java Development Kit (JDK) 8 or later.
