@@ -17,7 +17,12 @@ public class FlappyBird extends JPanel{
 
     FlappyBird(){
         setPreferredSize(new Dimension(boardWidth,boardHeight));
-        setBackground(Color.blue);
+        // setBackground(Color.blue);
 
+        // load images
+        backgrounImg = new ImageIcon(getClass().getResource("./flappybirdbg.png")).getImage();
+        birdImg = new ImageIcon(getClass().getResource("./flappybird.png")).getImage();
+        topPipeImg = new ImageIcon(getClass().getResource("./toppipe.png")).getImage();
+        bottomPipeImg = new ImageIcon(getClass().getResource("./bottompipe.png")).getImage();
     }
 }
