@@ -18,3 +18,10 @@ This is a simple implementation of the classic Flappy Bird game in Java using th
 2. Navigate to the project directory
 
 3. Compile and run the game
+
+## How to Play
+
+- Press the space bar to make the bird jump.
+- Navigate the bird through the gaps between the pipes.
+- Avoid colliding with the pipes.
+- The game ends when the bird hits a pipe or goes out of bounds.
