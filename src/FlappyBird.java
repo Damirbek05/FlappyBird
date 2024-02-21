@@ -5,7 +5,7 @@ import java.util.Random;
 import javax.swing.*;
 
 
-public class FlappyBird extends JPanel implements ActionListener{
+public class FlappyBird extends JPanel implements ActionListener, KeyListener{
     int boardWidth = 360;
     int boardHeight = 640;
 
@@ -21,8 +21,6 @@ public class FlappyBird extends JPanel implements ActionListener{
     int birdY = boardHeight/2;
     int birdWidth = 34;
     int birdHeight = 24;
-
-
 
     class Bird{
         int x = birdX;
@@ -118,7 +116,6 @@ public class FlappyBird extends JPanel implements ActionListener{
     }
 
     public void draw(Graphics g){
-        System.out.println("Draw");
         //background
         g.drawImage(backgroundImg,0,0,boardWidth,boardHeight,null);
         //bird
