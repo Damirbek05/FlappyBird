@@ -36,6 +36,26 @@ public class FlappyBird extends JPanel implements ActionListener{
         }
     }
 
+    //Pipes
+    int pipeX = boardWidth;
+    int pipeY = 0;
+    int pipeWidth = 64; // scaled by 1/6
+    int pipeHeight = 512;
+
+    class Pipe{
+        int x = pipeX;
+        int y = pipeY;
+        int width = pipeWidth;
+        int height = pipeHeight;
+        Image img;
+        boolean passed = false;
+
+        Pipe(Image img){
+            this.img = img;
+        }
+    }
+
+
     // Game logic
     Bird bird;
     int velocityY = -6; // up
