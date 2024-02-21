@@ -66,11 +66,14 @@ public class FlappyBird extends JPanel implements ActionListener{
     Random random = new Random();
 
     Timer gameLoop;
+    Timer placePipesTimer;
 
 
     FlappyBird(){
         setPreferredSize(new Dimension(boardWidth,boardHeight));
         // setBackground(Color.blue);
+        setFocusable(true);
+        addKeyListener(this);
 
         // load images
         backgroundImg = new ImageIcon(getClass().getResource("./flappybirdbg.png")).getImage();
@@ -80,10 +83,33 @@ public class FlappyBird extends JPanel implements ActionListener{
 
         // Bird
         bird = new Bird(birdImg);
+        pipes = new ArrayList<Pipe>();
+
+        // place pipes timer
+        placePipesTimer = new Timer(1500, new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                placePipes();
+            }
+        });
+        placePipesTimer.start();
 
         //game timer
         gameLoop = new Timer(1000/60,this); //1000/60=16.6
         gameLoop.start();
+
+
+    }
+
+    public void placePipes(){
+        // (0-1) * pipeHeight/2 -> (0-256)
+        // 128
+        // 0 - 128 - (0-256) --> pipeHeight/4 -> 3/4 pipeHeight
+
+        int randomPipeY = (int) (pipeY - pipeHeight/4 - Math.random()*(pipeHeight/2));
+        Pipe topPipe = new Pipe(topPipeImg);
+        topPipe.y = randomPipeY;
+        pipes.add(topPipe);
     }
 
     public void paintComponent(Graphics g){
@@ -97,17 +123,41 @@ public class FlappyBird extends JPanel implements ActionListener{
         g.drawImage(backgroundImg,0,0,boardWidth,boardHeight,null);
         //bird
         g.drawImage(bird.img,bird.x,bird.y,bird.width,bird.height,null);
+        //pipes
+        for (int i = 0; i < pipes.size(); i++) {
+            Pipe pipe = pipes.get(i);
+            g.drawImage(pipe.img,pipe.x,pipe.y,pipe.width,pipe.height,null);
+        }
     }
 
     public void move(){
         //bird
+        velocityY += gravity;
         bird.y += velocityY;
         bird.y = Math.max(bird.y,0);
+        //pipes
+        for (int i = 0; i < pipes.size(); i++) {
+            Pipe pipe = pipes.get(i);
+            pipe.x += velocityX;
+        }
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
         move();
         repaint();
+    }
+
+    @Override
+    public void keyPressed(KeyEvent e) {
+        if(e.getKeyCode() == KeyEvent.VK_SPACE){
+            velocityY = -9;
+        }
+    }
+    @Override
+    public void keyTyped(KeyEvent e) {
+    }
+    @Override
+    public void keyReleased(KeyEvent e) {
     }
 }
