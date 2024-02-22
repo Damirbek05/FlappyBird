@@ -2,6 +2,8 @@
 
 This is a simple implementation of the classic Flappy Bird game in Java using the Swing library.
 
+## The main goal of the project is to understand the Swing library in java and work with JFrame, JPanel, ActionListener, KeyListener
+
 ## Features
 
 - Flappy Bird game with basic graphics.
